@@ -1,5 +1,6 @@
 export const formatPrice = price => {
-  const formattedPrice = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-
-  return formattedPrice;
+  // 100의 자리까지 반올림
+  price = Math.round(price / 100) * 100;
+  // 천 단위 기호 추가
+  return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 };

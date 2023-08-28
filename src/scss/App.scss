@@ -125,24 +125,39 @@ $mainColor: #00b8ff;
 }
 
 .filter-list__tit {
-  border: 1px solid #eee;
-  background-color: #fff;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 0.25rem;
+  position: relative;
+  > button {
+    border: 1px solid #eee;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
 
-  span {
-    margin-left: 1rem;
-    font-size: 1.25rem;
+    &.active {
+      background-color: $mainColor;
+      border-color: $mainColor;
+      color: #fff;
+      padding-right: 1.5rem;
+    }
   }
 
-  &.active {
-    background-color: $mainColor;
-    border-color: $mainColor;
-    color: #fff;
+  &.filter-list__tit--single {
+    > button {
+      &.active {
+        background-color: #000;
+        color: $mainColor;
+        padding-right: 0.5rem;
+      }
+    }
   }
+}
+
+.filter-list__reset {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  color: #fff;
 }
 
 .filter-list__detail {
