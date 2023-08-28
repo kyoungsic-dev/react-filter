@@ -1,0 +1,158 @@
+$mainColor: #00b8ff;
+
+.App {
+  padding: 2rem 1rem 5rem;
+}
+
+.app-tit {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.car-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2.5rem 1rem;
+}
+
+.car-list__img {
+  background-color: fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 2.5rem 1rem 1rem 1rem;
+  position: relative;
+}
+
+.car-list__tag {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.55rem;
+  display: flex;
+  align-items: center;
+  > span {
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.car-list__cont {
+  padding: 0 0.75rem;
+}
+
+.car-list__name {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  > p {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.car-list__price {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > p {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  > span {
+    background-color: $mainColor;
+    color: #fff;
+    padding: 0.2rem 0.5rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.car-list__info {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+  > p {
+    color: #666;
+    font-size: 0.9rem;
+    &:not(:last-child) {
+      margin-right: 1rem;
+      position: relative;
+      &::before {
+        content: '';
+        width: 1px;
+        height: 70%;
+        background-color: #666;
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50%);
+        right: -9px;
+      }
+    }
+  }
+}
+
+.car-list__groups {
+  display: flex;
+  align-items: center;
+  > span {
+    &:not(:last-child) {
+      margin-right: 0.25rem;
+      &::after {
+        content: ',';
+      }
+    }
+  }
+}
+
+.filter-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  > li {
+    position: relative;
+    margin: 0 0.5rem;
+    cursor: pointer;
+  }
+}
+
+.filter-list__tit {
+  border: 1px solid #eee;
+  background-color: #fff;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+
+  span {
+    margin-left: 1rem;
+    font-size: 1.25rem;
+  }
+
+  &.active {
+    background-color: $mainColor;
+    border-color: $mainColor;
+    color: #fff;
+  }
+}
+
+.filter-list__detail {
+  margin-top: 2rem;
+  position: absolute;
+  z-index: 999;
+  button {
+    &.active {
+      background-color: $mainColor;
+      color: #fff;
+    }
+  }
+}
