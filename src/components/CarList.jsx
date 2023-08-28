@@ -7,12 +7,30 @@ export default function CarList() {
   const [carList, setCarList] = useState([]);
   const { filterData } = useContext(FilterContext);
 
+  // 리스트 로딩 & 에러 처리
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
   useEffect(() => {
+    let timeout;
+
     fetch('api/db.json')
       .then(res => res.json())
       .then(result => {
         setCarList(() => result.carClasses);
+      })
+      .catch(e => {
+        setIsError(true);
+      })
+      .finally(() => {
+        timeout = setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       });
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   // 원본 데이터를 필터 정보를 통해 필터
@@ -83,13 +101,23 @@ export default function CarList() {
     filteredList = [...carList].filter(item => carFilter.includes(item.carModel));
     console.log('filteredList', filteredList);
 
-    return filteredList;
+    return carList;
   };
 
+  if (isLoading) return <section>리스트를 불러오는 중입니다.</section>;
+  if (isError) return <section>리스트를 불러오는 중 에러가 발생했습니다.</section>;
+
   return (
-    <ul className='car-list'>
-      {filteredCarList() &&
-        filteredCarList().map(item => <CarItem key={item.carClassId} item={item} />)}
-    </ul>
+    <>
+      {filteredCarList() ? (
+        <ul className='car-list'>
+          {filteredCarList().map(item => (
+            <CarItem key={item.carClassId} item={item} />
+          ))}
+        </ul>
+      ) : (
+        <section>데이터가 없습니다.</section>
+      )}
+    </>
   );
 }
