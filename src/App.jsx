@@ -1,24 +1,14 @@
-import { useEffect, useState } from 'react';
 import CarList from './components/CarList';
-import FilterList from './components/FilterList';
+import Nav from './components/Nav';
 import './scss/App.scss';
+import FilterList from './components/FilterList';
 
 function App() {
-  const [carItems, setCarItems] = useState([]);
-
-  useEffect(() => {
-    fetch('api/db.json')
-      .then(res => res.json())
-      .then(result => {
-        setCarItems(() => result.carClasses);
-      });
-  }, []);
-
   return (
     <div className='App'>
-      <h1 className='app-tit'>차량 리스트</h1>
+      <Nav />
       <FilterList />
-      <CarList carItems={carItems} />
+      <CarList />
     </div>
   );
 }
