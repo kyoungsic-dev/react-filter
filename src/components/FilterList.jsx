@@ -66,17 +66,12 @@ export default function FilterList() {
     },
   ]);
 
-  // 필터 세부 옵션 모달 Toggle/특수 필터 Toggle
+  // 특수 필터 Toggle
   const handleToggleFilter = id => {
     const updatedFilterData = filterData.map(filter => {
       if (filter.id === id) {
         // 특수 필터일 때 필터 Toggle
-        if (filter.type === 'single') {
-          const status = !filter.status;
-          return { ...filter, status };
-        }
-
-        // 일반 필터일 때 모달 창 Toggle
+        if (filter.type === 'single') return { ...filter, status: !filter.status };
       }
 
       return filter;

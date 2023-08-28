@@ -120,7 +120,6 @@ $mainColor: #00b8ff;
   > li {
     position: relative;
     margin: 0 0.5rem;
-    cursor: pointer;
   }
 }
 
@@ -160,14 +159,62 @@ $mainColor: #00b8ff;
   color: #fff;
 }
 
-.filter-list__detail {
-  margin-top: 2rem;
-  position: absolute;
-  z-index: 999;
+.filter-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.filter-modal__btns {
+  background-color: #fff;
+  width: 500px;
+  max-height: 70vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $mainColor;
+  }
+
   button {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+
     &.active {
       background-color: $mainColor;
       color: #fff;
     }
   }
+}
+
+.filter-modal__close {
+  position: absolute;
+  top: -3rem;
+  right: -0.5rem;
+  font-size: 2.25rem;
+  svg {
+    path {
+      stroke: #fff;
+    }
+  }
+}
+
+.filter-modal__dim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(0.5rem);
+  cursor: pointer;
 }
