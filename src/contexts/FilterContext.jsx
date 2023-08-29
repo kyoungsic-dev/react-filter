@@ -25,7 +25,7 @@ export function FilterContextProvider({ children }) {
       status: false,
       options: [
         { optionTitle: '서울/경기/인천', optionStatus: false },
-        { optionTitle: '제주도', optionStatus: false },
+        { optionTitle: '제주', optionStatus: false },
         { optionTitle: '부산/창원', optionStatus: false },
         { optionTitle: '대구/경북', optionStatus: false },
         { optionTitle: '대전', optionStatus: false },
@@ -43,18 +43,6 @@ export function FilterContextProvider({ children }) {
       ],
     },
     {
-      id: 'rent',
-      type: 'single',
-      title: '빠른대여',
-      status: false,
-    },
-    {
-      id: 'new',
-      type: 'single',
-      title: '신차',
-      status: false,
-    },
-    {
       id: 'popular',
       type: 'single',
       title: '인기',
@@ -64,6 +52,24 @@ export function FilterContextProvider({ children }) {
       id: 'sale',
       type: 'single',
       title: '특가',
+      status: false,
+    },
+    {
+      id: 'new',
+      type: 'single',
+      title: '신차급',
+      status: false,
+    },
+    {
+      id: 'rent',
+      type: 'single',
+      title: '빠른대여',
+      status: false,
+    },
+    {
+      id: 'premium',
+      type: 'single',
+      title: '프리미엄',
       status: false,
     },
   ]);

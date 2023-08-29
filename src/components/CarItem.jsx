@@ -17,7 +17,7 @@ export default function CarItem({ item }) {
   return (
     <li>
       <div className='car-list__img'>
-        <img src={image} alt={carClassName} />
+        <img src={image} alt={carClassName} loading='lazy' />
         <div className='car-list__tag'>
           {carTypeTags.map((tag, idx) => (
             <span key={`tag-${idx}`}>{tag}</span>
