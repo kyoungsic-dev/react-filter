@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FilterContext } from '../contexts/FilterContext';
+import { FilterContext } from '../context/FilterContext';
 
 export default function useUpdateFilter() {
   const { filterData, setFilterDataWithLocalStorage } = useContext(FilterContext);

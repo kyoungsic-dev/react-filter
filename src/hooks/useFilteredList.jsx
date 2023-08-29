@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FilterContext } from './../contexts/FilterContext';
+import { FilterContext } from './../context/FilterContext';
 import useGetCarData from './useGetCarData';
 
 export default function useUpdateFilteredList() {

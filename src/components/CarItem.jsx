@@ -1,6 +1,6 @@
 import React from 'react';
-import { formatPrice } from '../functions/formatPrice';
-import { formatDistance } from './../functions/formatDistance';
+import { formatPrice } from '../utils/formatPrice';
+import { formatDistance } from '../utils/formatDistance';
 
 export default function CarItem({ item }) {
   const {
