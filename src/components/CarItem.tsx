@@ -1,8 +1,13 @@
 import React from 'react';
 import { formatPrice } from '../utils/formatPrice';
 import { formatDistance } from '../utils/formatDistance';
+import { Car } from '../model/types';
 
-export default function CarItem({ item }) {
+interface CarItemProps {
+  item: Car;
+}
+
+const CarItem: React.FC<CarItemProps> = ({ item }) => {
   const {
     carClassName,
     carTypeTags,
@@ -16,21 +21,17 @@ export default function CarItem({ item }) {
 
   return (
     <li>
+      <div className='car-list__tag'>
+        {carTypeTags.map((tag, idx) => (
+          <span key={`tag-${idx}`}>{tag}</span>
+        ))}
+      </div>
       <div className='car-list__img'>
         <img src={image} alt={carClassName} loading='lazy' />
-        <div className='car-list__tag'>
-          {carTypeTags.map((tag, idx) => (
-            <span key={`tag-${idx}`}>{tag}</span>
-          ))}
-        </div>
       </div>
       <div className='car-list__cont'>
         <div className='car-list__name'>
           <p>{carClassName}</p>
-        </div>
-        <div className='car-list__price'>
-          <p>{formatPrice(price)}원</p>
-          {discountPercent > 0 && <span>-{discountPercent}%</span>}
         </div>
         <div className='car-list__info'>
           <p>{year}년식</p>
@@ -41,7 +42,15 @@ export default function CarItem({ item }) {
             ))}
           </p>
         </div>
+        <div className='car-list__price'>
+          <p>
+            <span>{formatPrice(price)}</span>원
+          </p>
+          {discountPercent > 0 && <span>-{discountPercent}%</span>}
+        </div>
       </div>
     </li>
   );
-}
+};
+
+export default CarItem;

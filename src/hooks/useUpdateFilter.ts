@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { FilterContext } from '../context/FilterContext';
+import { useFilterContext } from '../context/FilterContext';
+import { Filter, FilterOption } from '../model/types';
 
 export default function useUpdateFilter() {
-  const { filterData, setFilterDataWithLocalStorage } = useContext(FilterContext);
+  const { filterData, setFilterDataWithLocalStorage } = useFilterContext();
 
   // 특수 필터 Toggle
-  const handleToggleFilter = id => {
-    const updatedFilterData = filterData.map(filter => {
+  const handleToggleFilter = (id: string) => {
+    const updatedFilterData = filterData.map((filter: Filter) => {
       if (filter.id === id) {
         // 특수 필터일 때 필터 Toggle
         if (filter.type === 'single') return { ...filter, status: !filter.status };
@@ -19,12 +19,12 @@ export default function useUpdateFilter() {
   };
 
   // 필터 세부 옵션 Toggle
-  const handleToggleFilterDetail = (id, optionTitle) => {
+  const handleToggleFilterDetail = (id: string, optionTitle: string) => {
     // 세부 옵션 Toggle
-    const updatedFilterData = filterData.map(filter => {
+    const updatedFilterData = filterData.map((filter: Filter) => {
       if (filter.id !== id) return filter;
 
-      let updatedOptions = [];
+      let updatedOptions: FilterOption[] = [];
 
       switch (filter.type) {
         // 차종/지역 - 중복
@@ -60,8 +60,8 @@ export default function useUpdateFilter() {
   };
 
   // 선택한 필터 초기화
-  const handleFilterReset = id => {
-    const updatedFilterData = filterData.map(filter => {
+  const handleFilterReset = (id: string) => {
+    const updatedFilterData = filterData.map((filter: Filter) => {
       if (filter.id === id) {
         const options = filter.options.map(option => ({ ...option, optionStatus: false }));
         return { ...filter, options };
@@ -74,7 +74,7 @@ export default function useUpdateFilter() {
 
   // 전체 필터 초기화
   const handleAllFilterReset = () => {
-    const ressetFilterData = filterData.map(filter => {
+    const ressetFilterData = filterData.map((filter: Filter) => {
       // 특수 타입 필터
       if (filter.type === 'single') return { ...filter, status: false };
 
@@ -88,7 +88,7 @@ export default function useUpdateFilter() {
   };
 
   // 필터 옵션들 중 optionStatus가 true인게 있는 지 체크
-  const opionStatusCheck = filterData => {
+  const opionStatusCheck = (filterData: Filter[]) => {
     const updatedFilterData = filterData.map(filter => {
       // 특수 타입 필터
       if (filter.type === 'single') return filter;

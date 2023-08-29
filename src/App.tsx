@@ -4,7 +4,7 @@ import Nav from './components/Nav';
 import FilterList from './components/FilterList';
 import './styles/App.scss';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className='App'>
       <Nav />
@@ -12,6 +12,6 @@ function App() {
       <CarList />
     </div>
   );
-}
+};
 
 export default App;

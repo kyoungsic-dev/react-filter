@@ -1,14 +1,21 @@
 import React from 'react';
-import { CgCloseO } from 'react-icons/cg';
 import { GrFormClose } from 'react-icons/gr';
 import useToggleModal from '../hooks/useToggleModal';
+import { Filter } from '../model/types';
 
-export default function FilterItem({
+interface FilterProps {
+  filter: Filter;
+  onToggleFilter: (id: string) => void;
+  onToggleFilterDetail: (filterId: string, optionTitle: string) => void;
+  onFilterReset: (id: string) => void;
+}
+
+const FilterItem: React.FC<FilterProps> = ({
   filter: { id, type, title, status, options },
   onToggleFilter,
   onToggleFilterDetail,
   onFilterReset,
-}) {
+}) => {
   const { modalOpened, handleToggleModal, handleCloseModal } = useToggleModal();
   return (
     <li>
@@ -28,7 +35,7 @@ export default function FilterItem({
             onClick={() => {
               onFilterReset(id);
             }}>
-            <CgCloseO />
+            <GrFormClose />
           </span>
         )}
       </div>
@@ -39,6 +46,8 @@ export default function FilterItem({
             <button type='button' className='filter-modal__close' onClick={handleCloseModal}>
               <GrFormClose />
             </button>
+
+            <h2 className='filter-modal__tit'>✅ {title} 옵션을 선택해 주세요.</h2>
 
             <div className='filter-modal__btns'>
               {/* 차종/지역 */}
@@ -75,4 +84,6 @@ export default function FilterItem({
       )}
     </li>
   );
-}
+};
+
+export default FilterItem;

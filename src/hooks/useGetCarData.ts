@@ -10,8 +10,12 @@ export default function useGetCarData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('api/db.json');
+        // const response = await fetch('http://localhost:8080/carClasses');
+        const response = await fetch('/api/db.json');
+
         const result = await response.json();
+
+        // setCarList(result);
         setCarList(result.carClasses);
       } catch (error) {
         setIsError(true);
