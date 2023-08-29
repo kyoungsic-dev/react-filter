@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CgCloseO } from 'react-icons/cg';
 import { GrFormClose } from 'react-icons/gr';
+import useToggleModal from '../hooks/useToggleModal';
 
 export default function FilterItem({
   filter: { id, type, title, status, options },
@@ -8,23 +9,7 @@ export default function FilterItem({
   onToggleFilterDetail,
   onFilterReset,
 }) {
-  // 세부 옵션 모달 Toggle
-  const [modalOpened, setModalOpened] = useState(false);
-  const handleToggleModal = () => {
-    setModalOpened(prev => !prev);
-
-    // 타입이 single이 아닐 때 모달 창 열림 상태에서 세로 스크롤 방지
-    if (type !== 'single') {
-      document.documentElement.style.overflow = 'hidden';
-    }
-  };
-
-  // 세부 옵션 모달 닫기
-  const handleCloseModal = () => {
-    setModalOpened(false);
-    document.documentElement.style.overflow = 'auto';
-  };
-
+  const { modalOpened, handleToggleModal, handleCloseModal } = useToggleModal();
   return (
     <li>
       <div className={`filter-list__tit ${type === 'single' ? 'filter-list__tit--single' : ''}`}>
@@ -33,7 +18,7 @@ export default function FilterItem({
           className={`${status ? 'active' : ''}`}
           onClick={() => {
             onToggleFilter(id);
-            handleToggleModal();
+            handleToggleModal(type);
           }}>
           {title}
         </button>

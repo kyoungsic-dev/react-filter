@@ -132,10 +132,19 @@ $mainColor: #00b8ff;
 
 // list
 .car-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2.5rem 1rem;
   margin: 3rem 1rem 0 1rem;
+  > p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    span {
+      color: $mainColor;
+    }
+  }
+  > ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2.5rem 1rem;
+  }
 }
 
 .car-list__img {

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { FilterContext } from '../contexts/FilterContext';
 
-export default function useFilter() {
-  const { filterData, setFilterData } = useContext(FilterContext);
+export default function useUpdateFilter() {
+  const { filterData, setFilterDataWithLocalStorage } = useContext(FilterContext);
 
   // 특수 필터 Toggle
   const handleToggleFilter = id => {
@@ -15,7 +15,7 @@ export default function useFilter() {
       return filter;
     });
 
-    setFilterData(updatedFilterData);
+    setFilterDataWithLocalStorage(updatedFilterData);
   };
 
   // 필터 세부 옵션 Toggle
@@ -84,7 +84,7 @@ export default function useFilter() {
       });
       return { ...filter, status: false, options };
     });
-    setFilterData(ressetFilterData);
+    setFilterDataWithLocalStorage(ressetFilterData);
   };
 
   // 필터 옵션들 중 optionStatus가 true인게 있는 지 체크
@@ -98,7 +98,7 @@ export default function useFilter() {
       return { ...filter, status };
     });
 
-    return setFilterData(updatedFilterData);
+    return setFilterDataWithLocalStorage(updatedFilterData);
   };
 
   return {

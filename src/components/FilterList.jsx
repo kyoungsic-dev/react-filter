@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterItem from './FilterItem';
-import useFilter from '../hooks/useFilter';
+import useUpdateFilter from '../hooks/useUpdateFilter';
 
 export default function FilterList() {
   const {
@@ -9,7 +9,7 @@ export default function FilterList() {
     handleToggleFilterDetail,
     handleFilterReset,
     handleAllFilterReset,
-  } = useFilter();
+  } = useUpdateFilter();
   return (
     <>
       <ul className='filter-list'>
